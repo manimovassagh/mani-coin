@@ -24,8 +24,5 @@ export class Block {
         return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.amount)).toString();
     }
 
-
-
-
 }
 
