@@ -16,14 +16,13 @@ someChain.addBlock(new Block(new Date(), 20));
 someChain.isChainValid()
 
 
-
 app.get("/", (_req, res) => {
     res.json(someChain);
 })
 
 const PORT = 3000;
-app.listen(PORT, () => { 
-    logger.info(`App is listening on port ${PORT}!` );
+app.listen(PORT, () => {
+    logger.info(`App is listening on port ${PORT}!`);
 })
 
 
