@@ -1,6 +1,6 @@
-import { Block } from "./Block";
 import { hashedGenesisAmount } from "../constants/genesis";
 import { logger } from "../utilities/logger";
+import { Block } from "./Block";
 
 
 
@@ -11,32 +11,32 @@ export class Blockchain {
     }
 
 
-    createGenesisBlock(): Block {
+    private createGenesisBlock(): Block {
         return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`,
             "Genesis secret starter", true)
     }
 
-    getLastBlock(): Block {
+    private getLastBlock(): Block {
         return this.chain[this.chain.length - 1];
     }
-    addBlock(newBlock: Block): void {
-        newBlock.previousHash = this.getLastBlock().hash;
-        newBlock.hash = newBlock.calculateHash();
+    public addBlock(newBlock: Block): void {
+        newBlock.previousHash = this.getLastBlock().blockHash;
+        newBlock.blockHash = newBlock.calculateHash();
         this.chain.push(newBlock);
 
     }
 
-    isChainValid(): boolean {
+    public isChainValid(): boolean {
         for (let i = 1; i < this.chain.length; i++) {
             const currentBlock = this.chain[i];
             const previousBlock = this.chain[i - 1];
 
-            if (currentBlock.hash !== currentBlock.calculateHash()) {
+            if (currentBlock.blockHash !== currentBlock.calculateHash()) {
                 logger.debug("Blockchain is not valid");
                 return false;
             }
 
-            if (currentBlock.previousHash !== previousBlock.hash) {
+            if (currentBlock.previousHash !== previousBlock.blockHash) {
                 logger.debug("Blockchain is manipulated and is not acceptable");
                 return false;
             }

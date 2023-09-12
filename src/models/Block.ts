@@ -3,10 +3,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 export class Block {
-    hash: string;
+    blockHash: string;
     index: string;
     isGenesis: boolean;
     unit = "Special mini Satoshi";
+
+
     constructor(
         public timestamp: Date,
         public amount: any,
@@ -18,10 +20,14 @@ export class Block {
         this.timestamp = timestamp;
         this.amount = amount;
         this.previousHash = previousHash;
-        this.hash = this.calculateHash();
+        this.blockHash = this.calculateHash();
     }
     calculateHash(): any {
-        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.amount)).toString();
+        return SHA256(
+            this.index +
+            this.previousHash
+            + this.timestamp
+            + JSON.stringify(this.amount)).toString();
     }
 
 }
