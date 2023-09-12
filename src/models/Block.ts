@@ -1,22 +1,24 @@
 import { SHA256 } from "crypto-js";
-import { IamAmount } from "./Types";
+import { v4 as uuidv4 } from 'uuid';
 
- export class Block {
-    hash: any;
-    constructor(public index: number,
+export class Block {
+    hash: string;
+    index: string;
+    unit="Special mini Satoshi";
+    constructor(
         public timestamp: Date,
-        public data: IamAmount,
-        public previousHash="") {
-        this.index = index;
+        public amount: any,
+        public previousHash = "") {
+        this.index = uuidv4();
         this.timestamp = timestamp;
-        this.data = data;
+        this.amount = amount;
         this.previousHash = previousHash;
         this.hash = this.calculateHash();
     }
     calculateHash(): any {
-        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.data)).toString();
+        return SHA256(this.index + this.previousHash + this.timestamp + JSON.stringify(this.amount)).toString();
     }
-    
+
 
 
 
