@@ -13,7 +13,7 @@ export class Blockchain {
 
     createGenesisBlock(): Block {
         return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`,
-         "Genesis secret starter", true)
+            "Genesis secret starter", true)
     }
 
     getLastBlock(): Block {
