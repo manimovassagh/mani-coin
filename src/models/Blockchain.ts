@@ -1,8 +1,8 @@
 import { SHA256 } from "crypto-js";
 import { Block } from "./Block";
+import { hashedGenesisAmount } from "../constants/genesis";
 const logger = require('pino')()
-const GENESIS_AMOUNT = 1_000_000
-const hashedGenesisAmount = SHA256(JSON.stringify(GENESIS_AMOUNT).toString())
+
 
 export class Blockchain {
     chain: Block[];
@@ -12,7 +12,8 @@ export class Blockchain {
 
 
     createGenesisBlock(): Block {
-        return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`, "Genesis secret starter", true)
+        return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`,
+         "Genesis secret starter", true)
     }
 
     getLastBlock(): Block {
