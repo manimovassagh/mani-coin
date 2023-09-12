@@ -1,7 +1,7 @@
 import express from "express";
+import { logger } from "./configs/logger";
 import { Block } from "./models/Block";
 import { Blockchain } from "./models/Blockchain";
-import { logger } from "./utilities/logger";
 
 
 

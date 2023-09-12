@@ -1,5 +1,5 @@
+import { logger } from "../configs/logger";
 import { hashedGenesisAmount } from "../constants/genesis";
-import { logger } from "../utilities/logger";
 import { Block } from "./Block";
 
 
