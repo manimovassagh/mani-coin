@@ -1,4 +1,3 @@
-import { SHA256 } from "crypto-js";
 import { Block } from "./Block";
 import { hashedGenesisAmount } from "../constants/genesis";
 const logger = require('pino')()
