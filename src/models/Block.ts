@@ -1,18 +1,19 @@
 import { SHA256 } from "crypto-js";
 import { v4 as uuidv4 } from 'uuid';
 
+
 export class Block {
     hash: string;
     index: string;
-    isGenesis:boolean;
-    unit="Special mini Satoshi";
+    isGenesis: boolean;
+    unit = "Special mini Satoshi";
     constructor(
         public timestamp: Date,
         public amount: any,
         public previousHash = "",
-        isGenesis:boolean=false,
-        ) {
-        this.isGenesis=isGenesis;
+        isGenesis: boolean = false,
+    ) {
+        this.isGenesis = isGenesis;
         this.index = uuidv4();
         this.timestamp = timestamp;
         this.amount = amount;

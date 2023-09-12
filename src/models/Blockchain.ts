@@ -1,8 +1,8 @@
 import { SHA256 } from "crypto-js";
 import { Block } from "./Block";
-
+const logger = require('pino')()
 const GENESIS_AMOUNT = 1_000_000
-const hashedGensisiAmount = SHA256(JSON.stringify(GENESIS_AMOUNT).toString())
+const hashedGenesisAmount = SHA256(JSON.stringify(GENESIS_AMOUNT).toString())
 
 export class Blockchain {
     chain: Block[];
@@ -12,7 +12,7 @@ export class Blockchain {
 
 
     createGenesisBlock(): Block {
-        return new Block(new Date(), `Special Genesis amount is ${hashedGensisiAmount}`, "Genesis secret starter", true)
+        return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`, "Genesis secret starter", true)
     }
 
     getLastBlock(): Block {
@@ -22,6 +22,26 @@ export class Blockchain {
         newBlock.previousHash = this.getLastBlock().hash;
         newBlock.hash = newBlock.calculateHash();
         this.chain.push(newBlock);
+
+    }
+
+    isChainValid(): boolean {
+        for (let i = 1; i < this.chain.length; i++) {
+            const currentBlock = this.chain[i];
+            const previousBlock = this.chain[i - 1];
+
+            if (currentBlock.hash !== currentBlock.calculateHash()) {
+                logger.info("Blockchain is not valid");
+                return false;
+            }
+
+            if (currentBlock.previousHash !== previousBlock.hash) {
+                logger.info("Blockchain is manipulated and is not acceptable");
+                return false;
+            }
+        }
+        logger.info("Blockchain is valid");
+        return true;
 
     }
 
