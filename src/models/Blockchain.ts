@@ -1,6 +1,7 @@
 import { Block } from "./Block";
 import { hashedGenesisAmount } from "../constants/genesis";
-const logger = require('pino')()
+import { logger } from "../utilities/logger";
+
 
 
 export class Blockchain {
@@ -31,12 +32,12 @@ export class Blockchain {
             const previousBlock = this.chain[i - 1];
 
             if (currentBlock.hash !== currentBlock.calculateHash()) {
-                logger.info("Blockchain is not valid");
+                logger.debug("Blockchain is not valid");
                 return false;
             }
 
             if (currentBlock.previousHash !== previousBlock.hash) {
-                logger.info("Blockchain is manipulated and is not acceptable");
+                logger.debug("Blockchain is manipulated and is not acceptable");
                 return false;
             }
         }
@@ -44,6 +45,5 @@ export class Blockchain {
         return true;
 
     }
-
 
 }
