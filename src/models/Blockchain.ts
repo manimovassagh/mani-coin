@@ -1,5 +1,5 @@
 import { logger } from "../configs/logger";
-import { hashedGenesisAmount } from "../constants/genesis";
+import { GENESIS_SECRET_STARTE, hashedGenesisAmount } from "../constants/genesis";
 import { Block } from "./Block";
 
 
@@ -12,8 +12,8 @@ export class Blockchain {
 
 
     private createGenesisBlock(): Block {
-        return new Block(new Date(), `Special Genesis amount is ${hashedGenesisAmount}`,
-            "Genesis secret starter", true)
+        return new Block( `Special Genesis amount is ${hashedGenesisAmount}`,
+        GENESIS_SECRET_STARTE, true)
     }
 
     private getLastBlock(): Block {

@@ -5,19 +5,17 @@ import { v4 as uuidv4 } from 'uuid';
 export class Block {
     blockHash: string;
     index: string;
-    isGenesis: boolean;
     unit = "Special mini Satoshi";
-
+    public timestamp: Date
 
     constructor(
-        public timestamp: Date,
         public amount: any,
         public previousHash = "",
-        isGenesis: boolean = false,
+        public isGenesis: boolean = false,
     ) {
         this.isGenesis = isGenesis;
         this.index = uuidv4();
-        this.timestamp = timestamp;
+        this.timestamp = new Date();
         this.amount = amount;
         this.previousHash = previousHash;
         this.blockHash = this.calculateHash();

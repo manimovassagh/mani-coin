@@ -8,16 +8,23 @@ import { Blockchain } from "./models/Blockchain";
 
 const app = express();
 logger.info("Blockchain is starting up");
-const someChain = new Blockchain();
+const createdBlockchain = new Blockchain();
 logger.info("Blockchain is started");
 
-someChain.addBlock(new Block(new Date(), 10));
-someChain.addBlock(new Block(new Date(), 20));
-someChain.isChainValid()
+createdBlockchain.addBlock(new Block(10));
+createdBlockchain.addBlock(new Block(20));
+createdBlockchain.isChainValid()
 
 
 app.get("/", (_req, res) => {
-    res.json(someChain);
+    res.json(createdBlockchain);
+})
+
+
+app.get("/acctuater", (_req, res) => {
+    res.json({
+        STATUS:"Healthy"
+    });
 })
 
 const PORT = 3000;
