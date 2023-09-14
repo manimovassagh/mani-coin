@@ -1,7 +1,7 @@
 import { SHA256 } from "crypto-js";
 import { v4 as uuidv4 } from 'uuid';
 
-//block class
+//block clas
 export class Block {
     blockHash: string;
     index: string;
