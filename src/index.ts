@@ -2,6 +2,7 @@ import express from "express";
 import { logger } from "./configs/logger";
 import { Block } from "./models/Block";
 import { Blockchain } from "./models/Blockchain";
+import {  healthCheck } from "./route/acctuater";
 
 
 
@@ -20,12 +21,8 @@ app.get("/", (_req, res) => {
     res.json(createdBlockchain);
 })
 
+healthCheck(app)
 
-app.get("/acctuater", (_req, res) => {
-    res.json({
-        STATUS:"Healthy"
-    });
-})
 
 const PORT = 3000;
 app.listen(PORT, () => {
