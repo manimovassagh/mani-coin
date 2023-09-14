@@ -1,5 +1,5 @@
 import pino from "pino"
-//logger to 
+//logger to log color
 export const logger = pino({
   transport: {
     target: 'pino-pretty'
