@@ -1,26 +1,16 @@
 import express from "express";
 import { logger } from "./configs/logger";
-import { Block } from "./models/Block";
-import { Blockchain } from "./models/Blockchain";
-import {  healthCheck } from "./route/acctuater";
+import { getBlockChain, healthCheck } from "./route/acctuater";
+import { createBlockchain } from "./data/blockchain";
 
 
 
 
 const app = express();
-logger.info("Blockchain is starting up");
-const createdBlockchain = new Blockchain();
-logger.info("Blockchain is started");
+const createdBlockchain = createBlockchain()
 
-createdBlockchain.addBlock(new Block(10));
-createdBlockchain.addBlock(new Block(20));
-createdBlockchain.isChainValid()
-
-
-app.get("/", (_req, res) => {
-    res.json(createdBlockchain);
-})
-
+//routers
+getBlockChain(app, createdBlockchain)
 healthCheck(app)
 
 
