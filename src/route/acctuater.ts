@@ -2,7 +2,7 @@ import { Express } from "express";
 import { Blockchain } from "../models/Blockchain";
 
 export type voidRouter = (app: Express) => void
-//this his is a function that takes in an express app and .
+//this his is a function that takes in an express app and tt.
 export const healthCheck: voidRouter = (app: Express): void => {
     app.get("/health", (_req, res) => {
         res.json({
