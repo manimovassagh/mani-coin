@@ -3,7 +3,7 @@ import { logger } from "./configs/logger";
 import { getBlockChain, healthCheck } from "./route/acctuater";
 import { createBlockchain } from "./data/blockchain";
 
-//this is a function that takes in an express app and.
+//this is  function that takes in an express app and.
 
 
 
